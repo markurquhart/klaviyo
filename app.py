@@ -29,9 +29,6 @@ json_data = json.dumps(Metrics)
 # Post payload from Klaviyo to a webhook using webhook.site
 response = requests.post(webhook, data = json_data)
 
-# Pull data back to a py dictionary format
-py_dictionary = json.loads(json_data)
-
-# Isolate a single value
-type_value = py_dictionary['data'][0]['type']
+# Isolate a single value - reuse original python dictionary before we pushed to json type
+type_value = Metrics['data'][0]['type']
 print(type_value)
