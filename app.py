@@ -16,18 +16,22 @@ webhook = os.getenv('WEBHOOK-URL')
 klaviyo = KlaviyoAPI(pri_key, max_delay=60, max_retries=3, test_host=None)
 
 # Hello world to print basic metrics, no filtering
-# Hello_World = klaviyo.Metrics.get_metrics()
+Metrics = klaviyo.Metrics.get_metrics()
 
 # Filtering Example on profiles between two timestamps 
 Filter_Profiles = klaviyo.Profiles.get_profiles(
     filter='less-than(updated,2023-06-22T00:00:00Z),greater-than(updated,2023-06-01T00:00:00Z)'
     )
 
-# Format to JSON to ready for post
-json_data = json.dumps(Filter_Profiles)
-
+# Dump to JSON to get ready to be POSTed
+json_data = json.dumps(Metrics)
 
 # Post payload from Klaviyo to a webhook using webhook.site
 response = requests.post(webhook, data = json_data)
 
+# Pull data back to a py dictionary format
+py_dictionary = json.loads(json_data)
 
+# Isolate a single value
+type_value = py_dictionary['data'][0]['type']
+print(type_value)
