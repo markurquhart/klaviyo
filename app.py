@@ -31,4 +31,10 @@ response = requests.post(webhook, data = json_data)
 
 # Isolate a single value - reuse original python dictionary before we pushed to json type
 type_value = Metrics['data'][0]['type']
-print(type_value)
+
+# Get multiple values, make a cleaner object 
+all_metric_types = [item['attributes']['name'] for item in Metrics['data']]
+
+# Format to JSON again, post again to Webhook.site
+json_data_2 = json.dumps(all_metric_types)
+second_response = requests.post(webhook, data = json_data_2)
