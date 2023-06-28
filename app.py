@@ -36,5 +36,6 @@ type_value = Metrics['data'][0]['type']
 all_metric_types = [item['attributes']['name'] for item in Metrics['data']]
 
 # Format to JSON again, post again to Webhook.site
+# Webhook URL is defined in the .env file
 json_data_2 = json.dumps(all_metric_types)
 response_2 = requests.post(webhook, data = json_data_2)
