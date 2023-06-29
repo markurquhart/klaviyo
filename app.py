@@ -19,12 +19,16 @@ klaviyo = KlaviyoAPI(pri_key, max_delay=60, max_retries=3, test_host=None)
 Metrics = klaviyo.Metrics.get_metrics()
 
 # Filtering Example on profiles between two timestamps 
-Filter_Profiles = klaviyo.Profiles.get_profiles(
-    filter='less-than(updated,2023-06-22T00:00:00Z),greater-than(updated,2023-06-01T00:00:00Z)'
-    )
+# Filter_Profiles = klaviyo.Profiles.get_profiles(
+#     filter='less-than(updated,2023-06-29T00:00:00Z),greater-than(updated,2023-04-01T00:00:00Z)'
+#     )
+
+# Get a single profile
+Single_Profile = klaviyo.Profiles.get_profile('01H3B7G9TX8BZWDH9SCZNPN0TT')
+print(Single_Profile)
 
 # Dump to JSON to get ready to be POSTed
-json_data = json.dumps(Metrics)
+json_data = json.dumps(Single_Profile)
 
 # Post payload from Klaviyo to a webhook using webhook.site
 response = requests.post(webhook, data = json_data)
