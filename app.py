@@ -11,6 +11,7 @@ load_dotenv()
 pub_key = os.getenv('PUB-API-KEY')
 pri_key = os.getenv('PRI-API-KEY')
 webhook = os.getenv('WEBHOOK-URL')
+profile = os.getenv('PROFILE')
 
 # Connection config
 klaviyo = KlaviyoAPI(pri_key, max_delay=60, max_retries=3, test_host=None)
@@ -24,7 +25,7 @@ Metrics = klaviyo.Metrics.get_metrics()
 #     )
 
 # Get a single profile
-Single_Profile = klaviyo.Profiles.get_profile('01H3B7G9TX8BZWDH9SCZNPN0TT')
+Single_Profile = klaviyo.Profiles.get_profile(profile)
 print(Single_Profile)
 
 # Dump to JSON to get ready to be POSTed
