@@ -1,2 +1,2 @@
-# Klaviyo Integration 
-Testing the Klaviyo Python SDK, and maintaining snippets for tracking on my personal website.
+# Klaviyo API and SDK Practice 
+Random code snippets using Klaviyo's API's or SDK's
